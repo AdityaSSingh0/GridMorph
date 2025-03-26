@@ -12,6 +12,7 @@ import {
 import { AnimatedCard } from '../UI/AnimatedCard';
 import { GlassCard } from '../UI/GlassCard';
 import { Button } from '../UI/Button';
+import { toast } from '@/components/ui/use-toast';
 
 const mockListings = [
   {
@@ -75,6 +76,41 @@ export const MarketplacePreview = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFilters] = useState(['All Types']);
 
+  const handleMyTransactions = () => {
+    toast({
+      title: "My Transactions",
+      description: "Viewing your transaction history",
+    });
+  };
+
+  const handleEnergyTypeFilter = () => {
+    toast({
+      title: "Filter",
+      description: "Energy type filtering will be available soon",
+    });
+  };
+
+  const handlePriceRangeFilter = () => {
+    toast({
+      title: "Filter",
+      description: "Price range filtering will be available soon",
+    });
+  };
+
+  const handleBuyNow = (listing: typeof mockListings[0]) => {
+    toast({
+      title: "Purchase Energy",
+      description: `Purchasing ${listing.amount} kWh from ${listing.seller}`,
+    });
+  };
+
+  const handleViewAllListings = () => {
+    toast({
+      title: "Marketplace",
+      description: "Viewing all available listings",
+    });
+  };
+
   return (
     <div className="rounded-xl border border-gray-100 shadow-sm bg-white overflow-hidden">
       <div className="p-6 border-b border-gray-100">
@@ -86,6 +122,7 @@ export const MarketplacePreview = () => {
           <Button 
             icon={<ArrowRightLeft size={16} />}
             className="hidden sm:flex"
+            onClick={handleMyTransactions}
           >
             My Transactions
           </Button>
@@ -100,19 +137,30 @@ export const MarketplacePreview = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10 pr-4 py-2 w-full border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-energify-blue focus:border-transparent"
+              aria-label="Search listings"
             />
           </div>
           
           <div className="flex gap-2">
             <div className="relative inline-block">
-              <button className="flex items-center justify-between px-4 py-2 border border-gray-200 rounded-lg bg-white min-w-[140px]">
+              <button 
+                className="flex items-center justify-between px-4 py-2 border border-gray-200 rounded-lg bg-white min-w-[140px]"
+                onClick={handleEnergyTypeFilter}
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
                 <span className="text-sm font-medium text-gray-700">Energy Type</span>
                 <ChevronDown size={16} className="ml-2 text-gray-400" />
               </button>
             </div>
             
             <div className="relative inline-block">
-              <button className="flex items-center justify-between px-4 py-2 border border-gray-200 rounded-lg bg-white min-w-[140px]">
+              <button 
+                className="flex items-center justify-between px-4 py-2 border border-gray-200 rounded-lg bg-white min-w-[140px]"
+                onClick={handlePriceRangeFilter}
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
                 <span className="text-sm font-medium text-gray-700">Price Range</span>
                 <ChevronDown size={16} className="ml-2 text-gray-400" />
               </button>
@@ -185,7 +233,7 @@ export const MarketplacePreview = () => {
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <Button size="sm">Buy Now</Button>
+                  <Button size="sm" onClick={() => handleBuyNow(listing)}>Buy Now</Button>
                 </td>
               </tr>
             ))}
@@ -198,7 +246,7 @@ export const MarketplacePreview = () => {
           <RefreshCw size={14} className="mr-1 animate-spin" />
           Auto-refreshing market data
         </div>
-        <Button variant="outline">View All Listings</Button>
+        <Button variant="outline" onClick={handleViewAllListings}>View All Listings</Button>
       </div>
     </div>
   );

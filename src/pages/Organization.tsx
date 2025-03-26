@@ -18,9 +18,60 @@ import {
 } from 'lucide-react';
 import { AnimatedCard } from '../components/UI/AnimatedCard';
 import { Button } from '../components/UI/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from '@/components/ui/use-toast';
 
 const Organization = () => {
+  const navigate = useNavigate();
+  
+  const handleNotification = () => {
+    toast({
+      title: "Notifications",
+      description: "You have 5 organization alerts",
+    });
+  };
+  
+  const handleInvite = () => {
+    toast({
+      title: "Invite Members",
+      description: "Invitation feature will be available soon",
+    });
+  };
+  
+  const handleViewAnalytics = () => {
+    toast({
+      title: "Organization Analytics",
+      description: "Analytics module will be available soon",
+    });
+  };
+  
+  const handleSettings = () => {
+    toast({
+      title: "Organization Settings",
+      description: "Settings module will be available soon",
+    });
+  };
+  
+  const handleTimeRange = (range: string) => {
+    toast({
+      title: "Time Range",
+      description: `Viewing data for: ${range}`,
+    });
+  };
+  
+  const handleFinancialReport = () => {
+    toast({
+      title: "Financial Report",
+      description: "Generating financial report...",
+    });
+  };
+  
+  const handleViewAllActivities = () => {
+    toast({
+      title: "All Activities",
+      description: "Viewing all organization activities",
+    });
+  };
   
   return (
     <div className="min-h-screen bg-gray-50">
@@ -36,9 +87,13 @@ const Organization = () => {
             
             <div className="flex items-center space-x-4">
               <div className="relative">
-                <button className="p-2 text-gray-600 bg-white rounded-lg border border-gray-200 hover:bg-gray-50">
+                <button 
+                  className="p-2 text-gray-600 bg-white rounded-lg border border-gray-200 hover:bg-gray-50"
+                  onClick={handleNotification}
+                  aria-label="View notifications"
+                >
                   <Bell size={20} />
-                  <span className="absolute top-0 right-0 h-2 w-2 rounded-full bg-energify-blue"></span>
+                  <span className="absolute top-0 right-0 h-2 w-2 rounded-full bg-energify-blue" aria-hidden="true"></span>
                 </button>
               </div>
               
@@ -50,7 +105,7 @@ const Organization = () => {
                     </div>
                   ))}
                 </div>
-                <Button size="sm" variant="outline">Invite</Button>
+                <Button size="sm" variant="outline" onClick={handleInvite}>Invite</Button>
               </div>
             </div>
           </div>
@@ -68,8 +123,8 @@ const Organization = () => {
               <Building2 size={16} className="mr-2" />
               <span>Organization</span>
             </Link>
-            <Button variant="ghost" icon={<BarChart3 size={16} />}>Analytics</Button>
-            <Button variant="ghost" icon={<Settings size={16} />}>Settings</Button>
+            <Button variant="ghost" icon={<BarChart3 size={16} />} onClick={handleViewAnalytics}>Analytics</Button>
+            <Button variant="ghost" icon={<Settings size={16} />} onClick={handleSettings}>Settings</Button>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -147,9 +202,27 @@ const Organization = () => {
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-xl font-medium">Energy Production & Distribution</h3>
                 <div className="flex space-x-2 bg-gray-100 rounded-lg p-1">
-                  <button className="px-3 py-1 rounded-md text-sm font-medium bg-white text-energify-blue shadow-sm">Day</button>
-                  <button className="px-3 py-1 rounded-md text-sm font-medium text-gray-500 hover:text-gray-700">Week</button>
-                  <button className="px-3 py-1 rounded-md text-sm font-medium text-gray-500 hover:text-gray-700">Month</button>
+                  <button 
+                    className="px-3 py-1 rounded-md text-sm font-medium bg-white text-energify-blue shadow-sm"
+                    onClick={() => handleTimeRange('Day')}
+                    aria-pressed="true"
+                  >
+                    Day
+                  </button>
+                  <button 
+                    className="px-3 py-1 rounded-md text-sm font-medium text-gray-500 hover:text-gray-700"
+                    onClick={() => handleTimeRange('Week')}
+                    aria-pressed="false"
+                  >
+                    Week
+                  </button>
+                  <button 
+                    className="px-3 py-1 rounded-md text-sm font-medium text-gray-500 hover:text-gray-700"
+                    onClick={() => handleTimeRange('Month')}
+                    aria-pressed="false"
+                  >
+                    Month
+                  </button>
                 </div>
               </div>
               
@@ -295,7 +368,12 @@ const Organization = () => {
               </div>
               
               <div className="mt-6">
-                <Button variant="outline" className="w-full" icon={<AreaChart size={16} />}>
+                <Button 
+                  variant="outline" 
+                  className="w-full" 
+                  icon={<AreaChart size={16} />}
+                  onClick={handleFinancialReport}
+                >
                   Financial Report
                 </Button>
               </div>
@@ -351,7 +429,11 @@ const Organization = () => {
               </div>
               
               <div className="mt-6 flex justify-end">
-                <Button variant="ghost" className="text-energify-blue">
+                <Button 
+                  variant="ghost" 
+                  className="text-energify-blue"
+                  onClick={handleViewAllActivities}
+                >
                   View All Activities
                 </Button>
               </div>

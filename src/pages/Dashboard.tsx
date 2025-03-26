@@ -14,9 +14,51 @@ import {
 } from 'lucide-react';
 import { AnimatedCard } from '../components/UI/AnimatedCard';
 import { Button } from '../components/UI/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from '@/components/ui/use-toast';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
+  const handleNotification = () => {
+    toast({
+      title: "Notifications",
+      description: "You have 3 unread notifications",
+    });
+  };
+
+  const handleTrade = () => {
+    navigate('/trading');
+  };
+
+  const handleViewAnalytics = () => {
+    toast({
+      title: "Analytics",
+      description: "Analytics module will be available soon",
+    });
+  };
+
+  const handleSmartContracts = () => {
+    toast({
+      title: "Smart Contracts",
+      description: "Smart Contracts module will be available soon",
+    });
+  };
+
+  const handleSettings = () => {
+    toast({
+      title: "Settings",
+      description: "Settings module will be available soon",
+    });
+  };
+
+  const handleViewAll = () => {
+    toast({
+      title: "Smart Contracts",
+      description: "Full contract details will be available soon",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
@@ -31,9 +73,13 @@ const Dashboard = () => {
             
             <div className="flex items-center space-x-4">
               <div className="relative">
-                <button className="p-2 text-gray-600 bg-white rounded-lg border border-gray-200 hover:bg-gray-50">
+                <button 
+                  className="p-2 text-gray-600 bg-white rounded-lg border border-gray-200 hover:bg-gray-50"
+                  onClick={handleNotification}
+                  aria-label="View notifications"
+                >
                   <Bell size={20} />
-                  <span className="absolute top-0 right-0 h-2 w-2 rounded-full bg-energify-blue"></span>
+                  <span className="absolute top-0 right-0 h-2 w-2 rounded-full bg-energify-blue" aria-hidden="true"></span>
                 </button>
               </div>
               
@@ -42,10 +88,14 @@ const Dashboard = () => {
                   <div className="text-sm text-gray-500">Balance</div>
                   <div className="font-medium">250 kWh</div>
                 </div>
-                <div className="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-50 rounded-r-lg text-energify-blue">
+                <button 
+                  onClick={handleTrade}
+                  className="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-50 rounded-r-lg text-energify-blue"
+                  aria-label="Trade energy"
+                >
                   <CircleDollarSign size={16} className="mr-1" />
                   <span className="text-sm font-medium">Trade</span>
-                </div>
+                </button>
               </div>
             </div>
           </div>
@@ -59,9 +109,9 @@ const Dashboard = () => {
               <Zap size={16} className="mr-2" />
               <span>Trading</span>
             </Link>
-            <Button variant="ghost" icon={<BarChart3 size={16} />}>Analytics</Button>
-            <Button variant="ghost" icon={<Sparkles size={16} />}>Smart Contracts</Button>
-            <Button variant="ghost" icon={<Settings size={16} />}>Settings</Button>
+            <Button variant="ghost" icon={<BarChart3 size={16} />} onClick={handleViewAnalytics}>Analytics</Button>
+            <Button variant="ghost" icon={<Sparkles size={16} />} onClick={handleSmartContracts}>Smart Contracts</Button>
+            <Button variant="ghost" icon={<Settings size={16} />} onClick={handleSettings}>Settings</Button>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
@@ -92,7 +142,7 @@ const Dashboard = () => {
               <div className="rounded-xl border border-gray-100 shadow-sm bg-white p-6">
                 <div className="flex justify-between items-center mb-8">
                   <h2 className="text-2xl font-medium">Smart Contract Activity</h2>
-                  <Button variant="outline" size="sm">View All</Button>
+                  <Button variant="outline" size="sm" onClick={handleViewAll}>View All</Button>
                 </div>
                 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
