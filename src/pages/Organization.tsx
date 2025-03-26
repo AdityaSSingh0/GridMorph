@@ -170,6 +170,7 @@ const Organization = () => {
                           className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-energify-blue/70 to-energify-blue/0 h-56"
                           style={{ clipPath: "polygon(0 75%, 5% 70%, 10% 80%, 15% 75%, 20% 85%, 25% 80%, 30% 90%, 35% 95%, 40% 85%, 45% 90%, 50% 95%, 55% 90%, 60% 100%, 65% 95%, 70% 90%, 75% 95%, 80% 85%, 85% 90%, 90% 85%, 95% 90%, 100% 85%, 100% 100%, 0 100%)" }}
                         ></div>
+                      </div>
                     </div>
                     
                     {/* Grid lines */}
@@ -187,175 +188,175 @@ const Organization = () => {
                   </div>
                 </div>
               </div>
-            </div>
-            
-            <div className="flex items-center justify-center space-x-6 mt-2">
-              <div className="flex items-center">
-                <div className="w-3 h-3 bg-energify-green rounded-sm mr-2"></div>
-                <span className="text-sm text-gray-600">Production</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-3 h-3 bg-energify-blue rounded-sm mr-2"></div>
-                <span className="text-sm text-gray-600">Distribution</span>
-              </div>
-            </div>
-          </AnimatedCard>
-          
-          <AnimatedCard animation="fade-in" delay={600} className="rounded-xl border border-gray-100 bg-white p-6">
-            <h3 className="text-xl font-medium mb-6">Energy Sources</h3>
-            
-            <div className="flex justify-center mb-6">
-              <div className="relative w-48 h-48">
-                {/* Solar - 45% */}
-                <Circle size={192} className="absolute inset-0 stroke-energify-blue" strokeWidth={8} strokeDasharray="283" strokeDashoffset="155" />
-                
-                {/* Wind - 30% */}
-                <Circle size={192} className="absolute inset-0 stroke-energify-green" strokeWidth={8} strokeDasharray="283" strokeDashoffset="85" />
-                
-                {/* Hydro - 15% */}
-                <Circle size={192} className="absolute inset-0 stroke-energify-teal" strokeWidth={8} strokeDasharray="283" strokeDashoffset="55" />
-                
-                {/* Other - 10% */}
-                <Circle size={192} className="absolute inset-0 stroke-gray-300" strokeWidth={8} strokeDasharray="283" />
-                
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <p className="text-sm text-gray-500">Total</p>
-                    <p className="text-2xl font-medium">25.8 MWh</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <div className="w-3 h-3 bg-energify-blue rounded-sm mr-2"></div>
-                  <span className="text-sm">Solar</span>
-                </div>
-                <span className="text-sm font-medium">45%</span>
-              </div>
               
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-center space-x-6 mt-2">
                 <div className="flex items-center">
                   <div className="w-3 h-3 bg-energify-green rounded-sm mr-2"></div>
-                  <span className="text-sm">Wind</span>
+                  <span className="text-sm text-gray-600">Production</span>
                 </div>
-                <span className="text-sm font-medium">30%</span>
-              </div>
-              
-              <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <div className="w-3 h-3 bg-energify-teal rounded-sm mr-2"></div>
-                  <span className="text-sm">Hydro</span>
+                  <div className="w-3 h-3 bg-energify-blue rounded-sm mr-2"></div>
+                  <span className="text-sm text-gray-600">Distribution</span>
                 </div>
-                <span className="text-sm font-medium">15%</span>
               </div>
-              
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <div className="w-3 h-3 bg-gray-300 rounded-sm mr-2"></div>
-                  <span className="text-sm">Other</span>
-                </div>
-                <span className="text-sm font-medium">10%</span>
-              </div>
-            </div>
-          </AnimatedCard>
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <AnimatedCard animation="fade-in" delay={700} className="rounded-xl border border-gray-100 bg-white p-6">
-            <div className="flex justify-between items-start mb-6">
-              <div>
-                <h3 className="text-xl font-medium">Financial Overview</h3>
-                <p className="text-sm text-gray-500">Current Month</p>
-              </div>
-              <div className="h-10 w-10 rounded-lg bg-blue-50 flex items-center justify-center">
-                <CircleDollarSign size={20} className="text-energify-blue" />
-              </div>
-            </div>
-            
-            <div className="space-y-4">
-              <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-                <span className="text-gray-600">Revenue</span>
-                <span className="text-lg font-medium">$128,450</span>
-              </div>
-              <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-                <span className="text-gray-600">Operational Costs</span>
-                <span className="text-lg font-medium">$42,380</span>
-              </div>
-              <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-                <span className="text-gray-600">Smart Contract Fees</span>
-                <span className="text-lg font-medium">$2,845</span>
-              </div>
-              <div className="flex justify-between items-center pt-2">
-                <span className="font-medium">Net Profit</span>
-                <span className="text-xl font-medium text-energify-blue">$83,225</span>
-              </div>
-            </div>
-            
-            <div className="mt-6">
-              <Button variant="outline" className="w-full" icon={<AreaChart size={16} />}>
-                Financial Report
-              </Button>
-            </div>
-          </AnimatedCard>
+            </AnimatedCard>
           
-          <AnimatedCard animation="fade-in" delay={800} className="rounded-xl border border-gray-100 bg-white p-6 lg:col-span-2">
-            <h3 className="text-xl font-medium mb-6">Recent Activities</h3>
-            
-            <div className="space-y-4">
-              {[
-                { 
-                  title: 'Smart Grid Optimization', 
-                  desc: 'AI adjusted energy distribution patterns based on predicted demand', 
-                  time: '10 minutes ago',
-                  icon: <Zap size={16} className="text-white" />,
-                  color: 'bg-energify-blue' 
-                },
-                { 
-                  title: 'New Producer Joined', 
-                  desc: 'SolarStream Inc. added 50kW capacity to the network', 
-                  time: '2 hours ago',
-                  icon: <Users size={16} className="text-white" />,
-                  color: 'bg-energify-green' 
-                },
-                { 
-                  title: 'Contract Auto-Renewal', 
-                  desc: 'DistribuTech agreement renewed for another month', 
-                  time: '5 hours ago',
-                  icon: <ClipboardList size={16} className="text-white" />,
-                  color: 'bg-energify-blue' 
-                },
-                { 
-                  title: 'Security Update', 
-                  desc: 'Blockchain security protocol upgraded to v3.2', 
-                  time: '1 day ago',
-                  icon: <ShieldCheck size={16} className="text-white" />,
-                  color: 'bg-energify-blue' 
-                }
-              ].map((activity, index) => (
-                <div key={index} className="flex items-start">
-                  <div className={`h-8 w-8 rounded-lg ${activity.color} flex items-center justify-center mr-4 mt-0.5 flex-shrink-0`}>
-                    {activity.icon}
-                  </div>
-                  <div className="flex-grow border-b border-gray-100 pb-4">
-                    <div className="flex justify-between items-start">
-                      <h4 className="font-medium">{activity.title}</h4>
-                      <span className="text-xs text-gray-500">{activity.time}</span>
+            <AnimatedCard animation="fade-in" delay={600} className="rounded-xl border border-gray-100 bg-white p-6">
+              <h3 className="text-xl font-medium mb-6">Energy Sources</h3>
+              
+              <div className="flex justify-center mb-6">
+                <div className="relative w-48 h-48">
+                  {/* Solar - 45% */}
+                  <Circle size={192} className="absolute inset-0 stroke-energify-blue" strokeWidth={8} strokeDasharray="283" strokeDashoffset="155" />
+                  
+                  {/* Wind - 30% */}
+                  <Circle size={192} className="absolute inset-0 stroke-energify-green" strokeWidth={8} strokeDasharray="283" strokeDashoffset="85" />
+                  
+                  {/* Hydro - 15% */}
+                  <Circle size={192} className="absolute inset-0 stroke-energify-teal" strokeWidth={8} strokeDasharray="283" strokeDashoffset="55" />
+                  
+                  {/* Other - 10% */}
+                  <Circle size={192} className="absolute inset-0 stroke-gray-300" strokeWidth={8} strokeDasharray="283" />
+                  
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center">
+                      <p className="text-sm text-gray-500">Total</p>
+                      <p className="text-2xl font-medium">25.8 MWh</p>
                     </div>
-                    <p className="text-sm text-gray-600 mt-1">{activity.desc}</p>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+              
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="w-3 h-3 bg-energify-blue rounded-sm mr-2"></div>
+                    <span className="text-sm">Solar</span>
+                  </div>
+                  <span className="text-sm font-medium">45%</span>
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="w-3 h-3 bg-energify-green rounded-sm mr-2"></div>
+                    <span className="text-sm">Wind</span>
+                  </div>
+                  <span className="text-sm font-medium">30%</span>
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="w-3 h-3 bg-energify-teal rounded-sm mr-2"></div>
+                    <span className="text-sm">Hydro</span>
+                  </div>
+                  <span className="text-sm font-medium">15%</span>
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="w-3 h-3 bg-gray-300 rounded-sm mr-2"></div>
+                    <span className="text-sm">Other</span>
+                  </div>
+                  <span className="text-sm font-medium">10%</span>
+                </div>
+              </div>
+            </AnimatedCard>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <AnimatedCard animation="fade-in" delay={700} className="rounded-xl border border-gray-100 bg-white p-6">
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <h3 className="text-xl font-medium">Financial Overview</h3>
+                  <p className="text-sm text-gray-500">Current Month</p>
+                </div>
+                <div className="h-10 w-10 rounded-lg bg-blue-50 flex items-center justify-center">
+                  <CircleDollarSign size={20} className="text-energify-blue" />
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex justify-between items-center pb-2 border-b border-gray-100">
+                  <span className="text-gray-600">Revenue</span>
+                  <span className="text-lg font-medium">$128,450</span>
+                </div>
+                <div className="flex justify-between items-center pb-2 border-b border-gray-100">
+                  <span className="text-gray-600">Operational Costs</span>
+                  <span className="text-lg font-medium">$42,380</span>
+                </div>
+                <div className="flex justify-between items-center pb-2 border-b border-gray-100">
+                  <span className="text-gray-600">Smart Contract Fees</span>
+                  <span className="text-lg font-medium">$2,845</span>
+                </div>
+                <div className="flex justify-between items-center pt-2">
+                  <span className="font-medium">Net Profit</span>
+                  <span className="text-xl font-medium text-energify-blue">$83,225</span>
+                </div>
+              </div>
+              
+              <div className="mt-6">
+                <Button variant="outline" className="w-full" icon={<AreaChart size={16} />}>
+                  Financial Report
+                </Button>
+              </div>
+            </AnimatedCard>
             
-            <div className="mt-6 flex justify-end">
-              <Button variant="ghost" className="text-energify-blue">
-                View All Activities
-              </Button>
-            </div>
-          </AnimatedCard>
+            <AnimatedCard animation="fade-in" delay={800} className="rounded-xl border border-gray-100 bg-white p-6 lg:col-span-2">
+              <h3 className="text-xl font-medium mb-6">Recent Activities</h3>
+              
+              <div className="space-y-4">
+                {[
+                  { 
+                    title: 'Smart Grid Optimization', 
+                    desc: 'AI adjusted energy distribution patterns based on predicted demand', 
+                    time: '10 minutes ago',
+                    icon: <Zap size={16} className="text-white" />,
+                    color: 'bg-energify-blue' 
+                  },
+                  { 
+                    title: 'New Producer Joined', 
+                    desc: 'SolarStream Inc. added 50kW capacity to the network', 
+                    time: '2 hours ago',
+                    icon: <Users size={16} className="text-white" />,
+                    color: 'bg-energify-green' 
+                  },
+                  { 
+                    title: 'Contract Auto-Renewal', 
+                    desc: 'DistribuTech agreement renewed for another month', 
+                    time: '5 hours ago',
+                    icon: <ClipboardList size={16} className="text-white" />,
+                    color: 'bg-energify-blue' 
+                  },
+                  { 
+                    title: 'Security Update', 
+                    desc: 'Blockchain security protocol upgraded to v3.2', 
+                    time: '1 day ago',
+                    icon: <ShieldCheck size={16} className="text-white" />,
+                    color: 'bg-energify-blue' 
+                  }
+                ].map((activity, index) => (
+                  <div key={index} className="flex items-start">
+                    <div className={`h-8 w-8 rounded-lg ${activity.color} flex items-center justify-center mr-4 mt-0.5 flex-shrink-0`}>
+                      {activity.icon}
+                    </div>
+                    <div className="flex-grow border-b border-gray-100 pb-4">
+                      <div className="flex justify-between items-start">
+                        <h4 className="font-medium">{activity.title}</h4>
+                        <span className="text-xs text-gray-500">{activity.time}</span>
+                      </div>
+                      <p className="text-sm text-gray-600 mt-1">{activity.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="mt-6 flex justify-end">
+                <Button variant="ghost" className="text-energify-blue">
+                  View All Activities
+                </Button>
+              </div>
+            </AnimatedCard>
+          </div>
         </div>
       </div>
       
