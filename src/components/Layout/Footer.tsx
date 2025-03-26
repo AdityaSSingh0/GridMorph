@@ -80,15 +80,15 @@ export const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
                 <MapPin size={20} className="text-energify-blue mt-0.5" />
-                <span className="text-gray-600">123 Sustainable Avenue, Smart City, 10001</span>
+                <span className="text-gray-600">GLBITM, Greatar Noida</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone size={20} className="text-energify-blue" />
-                <span className="text-gray-600">+1 (555) 123-4567</span>
+                <span className="text-gray-600">+91-6328797XX</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={20} className="text-energify-blue" />
-                <span className="text-gray-600">info@energify.network</span>
+                <span className="text-gray-600">info@De-Centragrid.network</span>
               </li>
             </ul>
           </div>
@@ -97,7 +97,7 @@ export const Footer = () => {
         <div className="border-t border-gray-100 mt-12 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-500 text-sm">
-              © {currentYear} Energify. All rights reserved.
+              © {currentYear} De-Centragrid. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-gray-500 hover:text-energify-blue text-sm">Privacy Policy</a>
