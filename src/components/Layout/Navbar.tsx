@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, LogIn, UserPlus } from 'lucide-react';
 import { Button } from '../UI/Button';
 import { cn } from '@/lib/utils';
 
@@ -32,14 +32,15 @@ export const Navbar = () => {
   }, [location]);
 
   const handleLogin = () => {
-    // In a real app, this would open a login modal or redirect to login page
-    console.log('Login clicked');
-    // Example redirect: navigate('/login');
+    navigate('/login');
+  };
+
+  const handleRegister = () => {
+    navigate('/register');
   };
 
   const handleGetStarted = () => {
-    // Redirect to dashboard as a demo action
-    navigate('/dashboard');
+    navigate('/register');
   };
 
   return (
@@ -80,8 +81,21 @@ export const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="outline" size="sm" onClick={handleLogin}>Login</Button>
-          <Button size="sm" onClick={handleGetStarted}>Get Started</Button>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={handleLogin}
+            icon={<LogIn size={16} />}
+          >
+            Login
+          </Button>
+          <Button 
+            size="sm" 
+            onClick={handleRegister}
+            icon={<UserPlus size={16} />}
+          >
+            Register
+          </Button>
         </div>
 
         {/* Mobile menu button */}
@@ -118,8 +132,21 @@ export const Navbar = () => {
               </Link>
             ))}
             <div className="pt-2 flex flex-col space-y-3">
-              <Button variant="outline" className="w-full justify-center" onClick={handleLogin}>Login</Button>
-              <Button className="w-full justify-center" onClick={handleGetStarted}>Get Started</Button>
+              <Button 
+                variant="outline" 
+                className="w-full justify-center" 
+                onClick={handleLogin}
+                icon={<LogIn size={16} />}
+              >
+                Login
+              </Button>
+              <Button 
+                className="w-full justify-center" 
+                onClick={handleRegister}
+                icon={<UserPlus size={16} />}
+              >
+                Register
+              </Button>
             </div>
           </div>
         </div>
