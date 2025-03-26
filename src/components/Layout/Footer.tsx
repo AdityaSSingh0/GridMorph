@@ -24,7 +24,7 @@ export const Footer = () => {
               <div className="h-10 w-10 rounded-full bg-energify-blue flex items-center justify-center">
                 <div className="h-5 w-5 bg-white rounded-full"></div>
               </div>
-              <span className="text-xl font-medium tracking-tight">Energify</span>
+              <span className="text-xl font-medium tracking-tight">De-Centragrid</span>
             </Link>
             
             <p className="text-gray-600 text-sm max-w-xs">
