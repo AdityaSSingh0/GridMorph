@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar } from '../components/Layout/Navbar';
 import { Footer } from '../components/Layout/Footer';
 import { MarketplacePreview } from '../components/Trading/MarketplacePreview';
@@ -20,9 +20,15 @@ import { AnimatedCard } from '../components/UI/AnimatedCard';
 import { Button } from '../components/UI/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from '@/components/ui/use-toast';
+import { SellEnergyDialog } from '../components/Trading/SellEnergyDialog';
+import { ManageTradesDialog } from '../components/Trading/ManageTradesDialog';
+import { TransactionHistoryDialog } from '../components/Trading/TransactionHistoryDialog';
 
 const Trading = () => {
   const navigate = useNavigate();
+  const [sellEnergyOpen, setSellEnergyOpen] = useState(false);
+  const [manageTradesOpen, setManageTradesOpen] = useState(false);
+  const [transactionHistoryOpen, setTransactionHistoryOpen] = useState(false);
 
   const handleNotification = () => {
     toast({
@@ -60,24 +66,15 @@ const Trading = () => {
   };
 
   const handleSellEnergy = () => {
-    toast({
-      title: "Sell Energy",
-      description: "Creating new energy sell listing...",
-    });
+    setSellEnergyOpen(true);
   };
 
   const handleManageTrades = () => {
-    toast({
-      title: "Manage Trades",
-      description: "You have 3 active trades",
-    });
+    setManageTradesOpen(true);
   };
 
   const handleViewHistory = () => {
-    toast({
-      title: "Transaction History",
-      description: "Viewing your past 28 transactions",
-    });
+    setTransactionHistoryOpen(true);
   };
 
   const handleManageContracts = () => {
@@ -159,6 +156,7 @@ const Trading = () => {
                   className="w-full justify-center" 
                   size="sm"
                   onClick={handleSellEnergy}
+                  aria-label="Sell your available energy"
                 >
                   Sell Energy
                 </Button>
@@ -181,6 +179,7 @@ const Trading = () => {
                   className="w-full justify-center" 
                   size="sm" 
                   onClick={handleManageTrades}
+                  aria-label="Manage your active trades"
                 >
                   Manage Trades
                 </Button>
@@ -221,6 +220,7 @@ const Trading = () => {
                   className="w-full justify-center" 
                   size="sm"
                   onClick={handleViewHistory}
+                  aria-label="View your transaction history"
                 >
                   View History
                 </Button>
@@ -323,6 +323,22 @@ const Trading = () => {
       </div>
       
       <Footer />
+      
+      {/* Dialog components */}
+      <SellEnergyDialog 
+        isOpen={sellEnergyOpen} 
+        onClose={() => setSellEnergyOpen(false)} 
+      />
+      
+      <ManageTradesDialog 
+        isOpen={manageTradesOpen} 
+        onClose={() => setManageTradesOpen(false)} 
+      />
+      
+      <TransactionHistoryDialog 
+        isOpen={transactionHistoryOpen} 
+        onClose={() => setTransactionHistoryOpen(false)} 
+      />
     </div>
   );
 };
