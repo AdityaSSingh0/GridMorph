@@ -10,6 +10,7 @@ import Trading from "./pages/Trading";
 import Organization from "./pages/Organization";
 import NotFound from "./pages/NotFound";
 
+// Create a single QueryClient instance for the entire app
 const queryClient = new QueryClient();
 
 const App = () => (

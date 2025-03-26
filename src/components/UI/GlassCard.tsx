@@ -27,3 +27,5 @@ export const GlassCard = ({
     </div>
   );
 };
+
+export default GlassCard;

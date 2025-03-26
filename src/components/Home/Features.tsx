@@ -86,7 +86,7 @@ export const Features = () => {
           {features.map((feature, index) => (
             <AnimatedCard 
               key={feature.title}
-              animation="fade-in-up"
+              animation="fade-in"
               delay={200 + index * 100}
               className="hover-scale"
             >

@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { GlassCard } from '../UI/AnimatedCard';
+import GlassCard from '../UI/GlassCard';
 import { AnimatedCard } from '../UI/AnimatedCard';
 import { 
   BarChart3, 
