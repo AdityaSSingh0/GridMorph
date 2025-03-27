@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BarChart, LineChart } from 'lucide-react';
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/UI/Button";
 import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
 
