@@ -11,6 +11,7 @@ import Organization from "./pages/Organization";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
+import ERPIntegration from "./pages/ERPIntegration";
 
 // Create a single QueryClient instance for the entire app
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/trading" element={<Trading />} />
           <Route path="/organization" element={<Organization />} />
+          <Route path="/erp-integration" element={<ERPIntegration />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />
