@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, ChevronDown, LogIn, UserPlus } from 'lucide-react';
+import { Menu, X, ChevronDown, LogIn, UserPlus, Database } from 'lucide-react';
 import { Button } from '../UI/Button';
 import { cn } from '@/lib/utils';
 
@@ -15,6 +15,7 @@ export const Navbar = () => {
     { name: 'Home', path: '/' },
     { name: 'Dashboard', path: '/dashboard' },
     { name: 'Trading', path: '/trading' },
+    { name: 'ERP & SAP', path: '/erp-integration' },
     { name: 'Organization', path: '/organization' },
   ];
 
