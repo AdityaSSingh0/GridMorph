@@ -98,7 +98,7 @@ const Login = () => {
     localStorage.setItem('lastLoginLocation', 'Greater Noida, IN');
     toast({
       title: "Login Successful",
-      description: "Welcome back to De-Centragrid!",
+      description: "Welcome back to GridMorph!",
     });
     navigate('/dashboard');
   };
@@ -152,7 +152,7 @@ const Login = () => {
             <div className="h-10 w-10 rounded-full bg-energify-blue flex items-center justify-center">
               <div className="h-5 w-5 animate-pulse-slow bg-white rounded-full"></div>
             </div>
-            <span className="text-xl font-medium tracking-tight">De-Centragrid</span>
+            <span className="text-xl font-medium tracking-tight">GridMorph</span>
           </Link>
           <h1 className="mt-6 text-2xl font-semibold text-gray-900">Sign in to your account</h1>
           <p className="mt-2 text-gray-600">

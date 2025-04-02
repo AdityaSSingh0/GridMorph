@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
@@ -139,7 +138,7 @@ const Register = () => {
       }));
       toast({
         title: "Registration Successful",
-        description: "Welcome to De-Centragrid! Your account has been created.",
+        description: "Welcome to GridMorph! Your account has been created.",
       });
       navigate('/dashboard');
       setIsLoading(false);
@@ -177,7 +176,7 @@ const Register = () => {
             <div className="h-10 w-10 rounded-full bg-energify-blue flex items-center justify-center">
               <div className="h-5 w-5 animate-pulse-slow bg-white rounded-full"></div>
             </div>
-            <span className="text-xl font-medium tracking-tight">De-Centragrid</span>
+            <span className="text-xl font-medium tracking-tight">GridMorph</span>
           </Link>
           <h1 className="mt-6 text-2xl font-semibold text-gray-900">Create an account</h1>
           <p className="mt-2 text-gray-600">
@@ -426,7 +425,7 @@ const Register = () => {
               </div>
 
               <div className="p-4 border border-gray-200 rounded-lg">
-                <h3 className="font-medium text-gray-800 mb-2">Your De-Centragrid Energy Profile</h3>
+                <h3 className="font-medium text-gray-800 mb-2">Your GridMorph Energy Profile</h3>
                 <ul className="space-y-2 text-sm">
                   <li className="flex justify-between">
                     <span className="text-gray-600">Name:</span>
