@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, BarChartBig, Zap, ShieldCheck } from 'lucide-react';
-import { Button } from '../UI/Button';
+import { Button } from '@/components/ui/custom-button';
 import { GlassCard } from '../UI/GlassCard';
 import { AnimatedCard } from '../UI/AnimatedCard';
 import { Link } from 'react-router-dom';

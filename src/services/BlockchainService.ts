@@ -1,7 +1,12 @@
 
 import { supabase } from '@/integrations/supabase/client';
+import { Database } from '@/integrations/supabase/types';
 
-export interface BlockchainTransaction {
+type BlockchainTransaction = Database['public']['Tables']['blockchain_transactions']['Row'];
+type BlockchainTransactionInsert = Database['public']['Tables']['blockchain_transactions']['Insert'];
+type BlockchainTransactionUpdate = Database['public']['Tables']['blockchain_transactions']['Update'];
+
+export interface BlockchainTransactionInterface {
   id: string;
   user_id: string;
   transaction_hash: string;
@@ -13,7 +18,7 @@ export interface BlockchainTransaction {
 }
 
 export class BlockchainService {
-  static async getTransactions(userId: string): Promise<BlockchainTransaction[]> {
+  static async getTransactions(userId: string): Promise<BlockchainTransactionInterface[]> {
     const { data, error } = await supabase
       .from('blockchain_transactions')
       .select('*')
@@ -31,7 +36,7 @@ export class BlockchainService {
     transactionType: string;
     amount: number;
     recipient?: string;
-  }): Promise<BlockchainTransaction> {
+  }): Promise<BlockchainTransactionInterface> {
     const { data, error } = await supabase.functions.invoke('blockchain-transaction', {
       body: transaction,
     });
@@ -43,10 +48,10 @@ export class BlockchainService {
     return data.transaction;
   }
   
-  static async updateTransactionStatus(id: string, status: string): Promise<BlockchainTransaction> {
+  static async updateTransactionStatus(id: string, status: string): Promise<BlockchainTransactionInterface> {
     const { data, error } = await supabase
       .from('blockchain_transactions')
-      .update({ status, updated_at: new Date().toISOString() })
+      .update({ status, updated_at: new Date().toISOString() } as BlockchainTransactionUpdate)
       .eq('id', id)
       .select()
       .single();

@@ -1,18 +1,20 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Session, User } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { Database } from '@/integrations/supabase/types';
+
+type Profile = Database['public']['Tables']['profiles']['Row'];
 
 interface AuthContextProps {
   session: Session | null;
   user: User | null;
-  profile: any | null;
+  profile: Profile | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{error: any | null}>;
   signUp: (email: string, password: string, userData: any) => Promise<{error: any | null}>;
   signOut: () => Promise<void>;
-  updateProfile: (data: any) => Promise<{error: any | null}>;
+  updateProfile: (data: Partial<Profile>) => Promise<{error: any | null}>;
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -21,7 +23,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
   const [loading, setLoading] = useState(true);
   const [session, setSession] = useState<Session | null>(null);
   const [user, setUser] = useState<User | null>(null);
-  const [profile, setProfile] = useState<any | null>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -72,7 +74,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
       if (error) {
         console.error('Error fetching profile:', error);
       } else {
-        setProfile(data);
+        setProfile(data as Profile);
       }
     } catch (error) {
       console.error('Error fetching profile:', error);
@@ -160,7 +162,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
     }
   };
 
-  const updateProfile = async (data: any) => {
+  const updateProfile = async (data: Partial<Profile>) => {
     try {
       const { error } = await supabase
         .from('profiles')
@@ -179,7 +181,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
       setProfile({
         ...profile,
         ...data
-      });
+      } as Profile);
       
       toast({
         title: "Profile updated",

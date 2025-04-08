@@ -1,5 +1,9 @@
 
 import { supabase } from '@/integrations/supabase/client';
+import { Database } from '@/integrations/supabase/types';
+
+type Notification = Database['public']['Tables']['notifications']['Row'];
+type NotificationInsert = Database['public']['Tables']['notifications']['Insert'];
 
 export class NotificationService {
   static async getNotifications(userId: string) {
@@ -13,15 +17,10 @@ export class NotificationService {
       throw new Error(error.message);
     }
     
-    return data;
+    return data as Notification[];
   }
   
-  static async createNotification(notification: {
-    user_id: string;
-    title: string;
-    message: string;
-    notification_type: string;
-  }) {
+  static async createNotification(notification: NotificationInsert) {
     const { data, error } = await supabase
       .from('notifications')
       .insert(notification)
@@ -32,7 +31,7 @@ export class NotificationService {
       throw new Error(error.message);
     }
     
-    return data;
+    return data as Notification;
   }
   
   static async markAsRead(id: string) {
@@ -47,7 +46,7 @@ export class NotificationService {
       throw new Error(error.message);
     }
     
-    return data;
+    return data as Notification;
   }
   
   static async markAllAsRead(userId: string) {
@@ -62,6 +61,6 @@ export class NotificationService {
       throw new Error(error.message);
     }
     
-    return data;
+    return data as Notification[];
   }
 }
