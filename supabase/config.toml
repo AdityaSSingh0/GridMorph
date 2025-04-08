@@ -1,1 +1,5 @@
+
 project_id = "utidymwvrwcpoibyzxsm"
+
+[functions.blockchain-transaction]
+verify_jwt = true

@@ -4,18 +4,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import { Eye, EyeOff, LogIn, Mail, Lock, ArrowLeft, Fingerprint, ShieldCheck } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { Button } from '../components/UI/Button';
+import { Button } from '@/components/ui/custom-button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [useBiometric, setUseBiometric] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(0);
   const [loginAttempts, setLoginAttempts] = useState(0);
   const [showTwoFactor, setShowTwoFactor] = useState(false);
@@ -23,16 +22,22 @@ const Login = () => {
   const [lastLocation, setLastLocation] = useState<string | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { signIn, user } = useAuth();
 
-  // Simulate loading last login location
   useEffect(() => {
+    // Redirect if user is already logged in
+    if (user) {
+      navigate('/dashboard');
+    }
+    
+    // Simulate loading last login location
     const storedLocation = localStorage.getItem('lastLoginLocation');
     if (storedLocation) {
       setTimeout(() => {
         setLastLocation(storedLocation);
       }, 1000);
     }
-  }, []);
+  }, [user, navigate]);
 
   // Password strength calculator
   useEffect(() => {
@@ -63,26 +68,19 @@ const Login = () => {
   };
 
   const handleBiometricAuth = () => {
-    setIsLoading(true);
-    // Simulate biometric authentication
-    setTimeout(() => {
-      toast({
-        title: "Biometric Authentication",
-        description: "Your fingerprint has been recognized.",
-      });
-      setShowTwoFactor(true);
-      setIsLoading(false);
-    }, 1500);
+    toast({
+      title: "Biometric Authentication",
+      description: "Biometric authentication is not available in this demo.",
+    });
   };
 
   const handleVerifyCode = () => {
-    // Simulate 2FA verification
     if (verificationCode === '123456' || verificationCode.length === 6) {
       toast({
         title: "Verification Successful",
         description: "Two-factor authentication complete.",
       });
-      completeLogin();
+      navigate('/dashboard');
     } else {
       toast({
         variant: "destructive",
@@ -92,41 +90,26 @@ const Login = () => {
     }
   };
 
-  const completeLogin = () => {
-    // Store user info in localStorage for demo purposes
-    localStorage.setItem('user', JSON.stringify({ email }));
-    localStorage.setItem('lastLoginLocation', 'Greater Noida, IN');
-    toast({
-      title: "Login Successful",
-      description: "Welcome back to GridMorph!",
-    });
-    navigate('/dashboard');
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
     setLoginAttempts(prev => prev + 1);
 
-    // Demo login functionality
-    setTimeout(() => {
-      // In a real app, you would make an actual API call to authenticate
-      if (email && password) {
-        if (loginAttempts >= 2) {
-          // Show 2FA after multiple login attempts for security
-          setShowTwoFactor(true);
-        } else {
-          completeLogin();
-        }
-      } else {
-        toast({
-          variant: "destructive",
-          title: "Login Failed",
-          description: "Please check your credentials and try again.",
-        });
+    if (email && password) {
+      const { error } = await signIn(email, password);
+      
+      if (!error) {
+        localStorage.setItem('lastLoginLocation', 'Greater Noida, IN');
+        navigate('/dashboard');
+      } else if (loginAttempts >= 2) {
+        setShowTwoFactor(true);
       }
-      setIsLoading(false);
-    }, 1500);
+    } else {
+      toast({
+        variant: "destructive",
+        title: "Login Failed",
+        description: "Please check your credentials and try again.",
+      });
+    }
   };
 
   return (
@@ -290,7 +273,7 @@ const Login = () => {
               <Button
                 type="submit"
                 className="w-full"
-                isLoading={isLoading}
+                isLoading={false}
                 icon={<LogIn size={18} />}
               >
                 Sign in

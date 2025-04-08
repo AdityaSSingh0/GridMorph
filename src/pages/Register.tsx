@@ -3,10 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import { Eye, EyeOff, Mail, Lock, UserPlus, User, ArrowLeft, CheckCircle2, ShieldCheck, MapPin } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { Button } from '../components/UI/Button';
+import { Button } from '@/components/ui/custom-button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -23,6 +24,21 @@ const Register = () => {
   const [verificationSent, setVerificationSent] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { signUp, user } = useAuth();
+
+  useEffect(() => {
+    // Redirect if user is already logged in
+    if (user) {
+      navigate('/dashboard');
+    }
+    
+    // Simulate location detection
+    const detectLocation = setTimeout(() => {
+      setEstimatedLocation('Greater Noida, UP, India');
+    }, 1500);
+
+    return () => clearTimeout(detectLocation);
+  }, [user, navigate]);
 
   // Password strength calculator
   useEffect(() => {
@@ -46,15 +62,6 @@ const Register = () => {
     setPasswordStrength(strength);
   }, [password]);
 
-  // Simulate location detection
-  useEffect(() => {
-    const detectLocation = setTimeout(() => {
-      setEstimatedLocation('Greater Noida, UP, India');
-    }, 1500);
-
-    return () => clearTimeout(detectLocation);
-  }, []);
-
   const getStrengthColor = () => {
     if (passwordStrength < 40) return 'bg-red-500';
     if (passwordStrength < 80) return 'bg-yellow-500';
@@ -67,7 +74,7 @@ const Register = () => {
     return 'Strong';
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (step === 1) {
@@ -113,42 +120,30 @@ const Register = () => {
         return;
       }
       
-      // Verify email
-      setVerificationSent(true);
-      toast({
-        title: "Verification Email Sent",
-        description: "Please check your inbox to complete registration.",
-      });
-      return;
-    }
-    
-    setIsLoading(true);
-
-    // Demo registration functionality
-    setTimeout(() => {
-      // Store user info in localStorage for demo purposes
-      localStorage.setItem('user', JSON.stringify({ 
-        name, 
-        email,
+      setIsLoading(true);
+      
+      const { error } = await signUp(email, password, { 
+        name,
         energyProfile: {
           type: energyType,
           consumption: monthlyConsumption,
           location: estimatedLocation
         }
-      }));
-      toast({
-        title: "Registration Successful",
-        description: "Welcome to GridMorph! Your account has been created.",
       });
-      navigate('/dashboard');
+      
       setIsLoading(false);
-    }, 1500);
+      
+      if (!error) {
+        setStep(3);
+        setVerificationSent(true);
+      }
+    }
   };
 
   const simulateVerification = () => {
     setIsLoading(true);
     setTimeout(() => {
-      setStep(3);
+      navigate('/dashboard');
       setIsLoading(false);
     }, 1500);
   };
@@ -397,7 +392,7 @@ const Register = () => {
                 isLoading={isLoading}
                 icon={<ShieldCheck size={18} />}
               >
-                Verify Your Identity
+                Create Account
               </Button>
 
               <Button
