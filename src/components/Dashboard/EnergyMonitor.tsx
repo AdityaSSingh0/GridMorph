@@ -10,7 +10,7 @@ import {
   Shield,
   BarChart 
 } from 'lucide-react';
-import { Button } from '../UI/Button';
+import { Button } from '@/components/ui/custom-button'; // Updated import to use the correct path
 
 const mockData = {
   consumption: 28.4,
