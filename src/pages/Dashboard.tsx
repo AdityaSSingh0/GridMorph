@@ -13,7 +13,7 @@ import {
   Bell
 } from 'lucide-react';
 import { AnimatedCard } from '../components/UI/AnimatedCard';
-import { Button } from '../components/UI/Button';
+import { Button } from '@/components/ui/custom-button';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from '@/components/ui/use-toast';
 
